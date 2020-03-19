@@ -41,24 +41,24 @@ class Airplane {
 */
 
 class Person {
-  constructor(name,age){
+  constructor(name, age) {
     this.name = name;
-    this.age= age;
+    this.age = age;
     this.stomach = [];
-}
-
-eat(someFood) {
-  if (this.stomach.length < 10) {
-    this.stomach.push(someFood);
   }
-};
 
-poop() {
+  eat(someFood) {
+    if (this.stomach.length < 10) {
+      this.stomach.push(someFood);
+    }
+  };
+
+  poop() {
     this.stomach = [];
   };
 
-toString() {
-  return `${this.name}, ${this.age}`;
+  toString() {
+    return `${this.name}, ${this.age}`;
   };
 }
 
@@ -78,28 +78,28 @@ toString() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car{
+class Car {
   constructor(model, milesPerGallon) {
-  this.model = model;
-  this.milesPerGallon = milesPerGallon;
-  this.tank = 0;
-  this.odometer = 0;
-}
-
-fill(gallons) {
-  this.tank = gallons + this.tank;
-}
-
-drive(distance) {
-  if(this.tank <= distance / this.milesPerGallon){
-    this.odometer += this.tank * this.milesPerGallon
-    this.tank = 0
-    return `I ran out of fuel at ${this.odometer} miles!`
-  }else{
-    this.odometer += distance
-    this.tank -= distance / this.milesPerGallon
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
   }
-}
+
+  fill(gallons) {
+    this.tank = gallons + this.tank;
+  }
+
+  drive(distance) {
+    if (this.tank <= distance / this.milesPerGallon) {
+      this.odometer += this.tank * this.milesPerGallon
+      this.tank = 0
+      return `I ran out of fuel at ${this.odometer} miles!`
+    } else {
+      this.odometer += distance
+      this.tank -= distance / this.milesPerGallon
+    }
+  }
 }
 
 /*
@@ -116,13 +116,13 @@ drive(distance) {
 */
 
 class Lambdasian {
-  constructor(person){
+  constructor(person) {
     this.name = person.name;
     this.age = person.age;
     this.location = person.location;
   }
 
-  speak(){
+  speak() {
     return `Hello my name is ${this.name}, I am from  ${this.location}`;
   }
 }
@@ -142,14 +142,14 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor(person){
+  constructor(person) {
     super(person);
     this.specialty = person.specialty;
     this.favLanguage = person.favLanguage;
     this.catchPhrase = person.catchPhrase;
   }
 
-  demo(subject){
+  demo(subject) {
     return `Today we are learning about ${subject}`;
   }
 
@@ -157,8 +157,10 @@ class Instructor extends Lambdasian {
     return `${student.name} receives a perfect score on ${subject}`;
   }
 
+  score(student) {
+    return student.grade = Math.floor((Math.random() * 100) + 1);
+  }
 }
-
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -174,26 +176,38 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student extends Lambdasian{
-  constructor(person){
+class Student extends Lambdasian {
+  constructor(person) {
     super(person)
     this.previousBackground = person.previousBackground;
     this.className = person.className;
     this.favSubjects = person.favSubjects;
-    this.grade = person.grade
+    this.grade = person.grade = 100;
   }
 
-  listSubjects(){
+  listSubjects() {
     return `Loving ${this.favSubjects}!`
   }
 
-  PRAssignment(subject){
+  PRAssignment(subject) {
     return `${this.name} has submitted a PR for ${subject}`
   }
 
-  sprintChallenge(subject){
+  sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
   }
+
+  generateScore(grade) {
+    grade = Math.floor(Math.random() * 100);
+    return grade;
+  }
+
+  graduate() {
+    if (this.grade < 70 ) {
+      this.grade = Math.floor(Math.random() * 100);
+    }
+    return `${this.name} is ready to graduate!`;
+ }
 }
 
 /*
@@ -209,22 +223,24 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager extends Instructor{
-  constructor(person){
+class ProjectManager extends Instructor {
+  constructor(person) {
     super(person);
     this.gradClassName = person.gradClassName;
     this.favInstructor = person.favInstructor;
   }
 
-  standUp(channel){
+  standUp(channel) {
     return `${this.name} announces to ${channel}, @channel standy times!`;
   }
 
-  debugsCode(student, subject){
+  debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 
 }
+
+
 
 /*
   STRETCH PROBLEM (no tests!)
@@ -240,11 +256,25 @@ class ProjectManager extends Instructor{
 ///////// END OF CHALLENGE /////////
 if (typeof exports !== 'undefined') {
   module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
-  if (Instructor) { module.exports.Instructor = Instructor }
-  if (Student) { module.exports.Student = Student }
-  if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
+  if (Airplane) {
+    module.exports.Airplane = Airplane
+  }
+  if (Person) {
+    module.exports.Person = Person
+  }
+  if (Car) {
+    module.exports.Car = Car
+  }
+  if (Lambdasian) {
+    module.exports.Lambdasian = Lambdasian
+  }
+  if (Instructor) {
+    module.exports.Instructor = Instructor
+  }
+  if (Student) {
+    module.exports.Student = Student
+  }
+  if (ProjectManager) {
+    module.exports.ProjectManager = ProjectManager
+  }
 }
