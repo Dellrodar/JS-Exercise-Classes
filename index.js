@@ -116,10 +116,10 @@ drive(distance) {
 */
 
 class Lambdasian {
-  constructor(name, age, location){
-    this.name = name;
-    this.age = age;
-    this.location = location;
+  constructor(person){
+    this.name = person.name;
+    this.age = person.age;
+    this.location = person.location;
   }
 
   speak(){
@@ -142,8 +142,11 @@ class Lambdasian {
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 class Instructor extends Lambdasian {
-  constructor(specialty, favLanguage, ){
-
+  constructor(person){
+    super('instructor', name, age, location);
+    this.specialty = person.specialty;
+    this.favLanguage = person.favLanguage;
+    this.catchphrase = person.catchphrase;
   }
 
 }
