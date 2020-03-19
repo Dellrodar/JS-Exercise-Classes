@@ -41,8 +41,28 @@ class Airplane {
 */
 
 class Person {
-
+  constructor(name,age){
+    this.name = name;
+    this.age= age;
+    this.stomach = [];
 }
+
+eat(someFood) {
+  if (this.stomach.length < 10) {
+    this.stomach.push(someFood);
+  }
+};
+
+poop() {
+    this.stomach = [];
+  };
+
+toString() {
+  return `${this.name}, ${this.age}`;
+  };
+}
+
+
 
 /*
   TASK 2
@@ -58,8 +78,28 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
+class Car{
+  constructor(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+}
 
+fill(gallons) {
+  this.tank = gallons + this.tank;
+}
+
+drive(distance) {
+  if(this.tank <= distance / this.milesPerGallon){
+    this.odometer += this.tank * this.milesPerGallon
+    this.tank = 0
+    return `I ran out of fuel at ${this.odometer} miles!`
+  }else{
+    this.odometer += distance
+    this.tank -= distance / this.milesPerGallon
+  }
+}
 }
 
 /*
@@ -74,8 +114,17 @@ class Car {
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {
 
+class Lambdasian {
+  constructor(name, age, location){
+    this.name = name;
+    this.age = age;
+    this.location = location;
+  }
+
+  speak(){
+    return `Hello my name is ${this.name}, I am from  ${this.location}`;
+  }
 }
 
 /*
@@ -92,7 +141,10 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(specialty, favLanguage, ){
+
+  }
 
 }
 
