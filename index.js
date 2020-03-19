@@ -180,6 +180,7 @@ class Student extends Lambdasian{
     this.previousBackground = person.previousBackground;
     this.className = person.className;
     this.favSubjects = person.favSubjects;
+    this.grade = person.grade
   }
 
   listSubjects(){
