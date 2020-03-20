@@ -217,10 +217,8 @@ class Student extends Lambdasian {
   }
 
   graduate() {
-    if (this.grade >= 70 ) { 
-      return `${this.name} is ready to graduate!`;
-    }
- }
+    return this.grade >= 70;
+  }
 }
 
 /*
