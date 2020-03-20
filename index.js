@@ -158,7 +158,21 @@ class Instructor extends Lambdasian {
   }
 
   score(student) {
-    return student.grade = Math.floor((Math.random() * 100) + 1);
+    const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+    student.grade += (Math.floor(Math.random() * 100) + 1) * plusOrMinus;
+    if (student.grade < 0) {
+      student.grade = 0;
+    }
+  }
+
+  helpGraduate(student) {
+    let readyToGrad = false;
+    while (!readyToGrad) {
+      this.score(student);
+      if (student.graduate()) {
+        readyToGrad = true;
+      }
+    }
   }
 }
 /*
@@ -182,7 +196,7 @@ class Student extends Lambdasian {
     this.previousBackground = person.previousBackground;
     this.className = person.className;
     this.favSubjects = person.favSubjects;
-    this.grade = person.grade = 100;
+    this.grade = Math.floor((Math.random() * 100) + 1);
   }
 
   listSubjects() {
@@ -198,15 +212,14 @@ class Student extends Lambdasian {
   }
 
   generateScore(grade) {
-    grade = Math.floor(Math.random() * 100);
+    grade = Math.floor((Math.random() * 100) + 1);
     return grade;
   }
 
   graduate() {
-    if (this.grade < 70 ) {
-      this.grade = Math.floor(Math.random() * 100);
+    if (this.grade >= 70 ) { 
+      return `${this.name} is ready to graduate!`;
     }
-    return `${this.name} is ready to graduate!`;
  }
 }
 
